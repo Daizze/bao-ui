@@ -10,19 +10,11 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
-import { UseWalletProvider } from 'use-wallet'
-import Market from 'views/Markets/Market'
 import MobileMenu from './components/MobileMenu'
 import TopBar from './components/TopBar'
-import BaoProvider from './contexts/BaoProvider'
-import FarmsProvider from './contexts/Farms'
-import MarketsProvider from './contexts/Markets'
 import ModalsProvider from './contexts/Modals'
-import TransactionProvider from './contexts/Transactions'
 import theme from './theme'
-import Ballast from './views/Ballast'
-import Farms from './views/Farms'
-import Markets from './views/Markets'
+import Landing from './views/Landing'
 
 library.add(fas, fab)
 
@@ -62,16 +54,7 @@ const App: React.FC = () => {
 				<MobileMenu onDismiss={handleDismissMobileMenu} visible={mobileMenu} />
 				<Switch>
 					<Route path="/" exact>
-						<Markets />
-					</Route>
-					<Route path="/markets/:marketId">
-						<Market />
-					</Route>
-					<Route path="/ballast">
-						<Ballast />
-					</Route>
-					<Route path="/farms">
-						<Farms />
+						<Landing />
 					</Route>
 				</Switch>
 			</Router>
@@ -86,31 +69,14 @@ const Providers: React.FC<ProvidersProps> = ({
 	return (
 		<ThemeProvider theme={theme(isDarkMode)}>
 			<GlobalStyle />
-			<UseWalletProvider
-				chainId={1}
-				connectors={{
-					walletconnect: {
-						rpcUrl: 'https://rpc.flashbots.net',
-					},
-				}}
-			>
-				<BaoProvider>
-					<MarketsProvider>
-						<FarmsProvider>
-							<TransactionProvider>
-								<SWRConfig
-									value={{
-										fetcher,
-										refreshInterval: 300000,
-									}}
-								>
-									<ModalsProvider>{children}</ModalsProvider>
-								</SWRConfig>
-							</TransactionProvider>
-						</FarmsProvider>
-					</MarketsProvider>
-				</BaoProvider>
-			</UseWalletProvider>
+				<SWRConfig
+					value={{
+						fetcher,
+						refreshInterval: 300000,
+					}}
+				>
+					<ModalsProvider>{children}</ModalsProvider>
+				</SWRConfig>
 		</ThemeProvider>
 	)
 }
