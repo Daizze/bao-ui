@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { Button } from '../Button'
 import AccountButton from './components/AccountButton'
 import Nav from './components/Nav'
+import {navItems} from "../../views/navItems";
 
 interface TopBarProps {
 	isDarkMode: boolean
@@ -26,10 +27,9 @@ const TopBar: React.FC<TopBarProps> = ({
 					<Logo />
 				</StyledLogoWrapper>
 				<StyledNavWrapper>
-					<Nav />
+					<Nav navItems={navItems} />
 				</StyledNavWrapper>
 				<StyledAccountButtonWrapper>
-					<AccountButton />
 					<StyledThemeButton>
 						<Button onClick={toggleTheme}>
 							<FontAwesomeIcon icon={isDarkMode ? 'moon' : 'sun'} />
