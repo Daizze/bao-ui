@@ -61,15 +61,6 @@ const App: React.FC = () => {
 					<Route path="/" exact>
 						<Landing />
 					</Route>
-					<Route path="/NFT">
-						<NFT />
-					</Route>
-					<Route path="/baskets" exact>
-						<Baskets />
-					</Route>
-					<Route path="/baskets/:id">
-						<Basket />
-					</Route>
 				</Switch>
 			</Router>
 		</Providers>

@@ -14,7 +14,7 @@ const Landing: React.FC = () => {
 		<Page>
 			<PageHeader
 				icon=""
-				title="Bao Finance"
+				title="PandaChef"
 			/>
 				<Route exact path={path}>
 					<Container>

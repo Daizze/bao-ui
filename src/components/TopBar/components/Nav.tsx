@@ -13,7 +13,7 @@ const Nav: React.FC<NavItemsProps> = ({navItems}) => {
 			{
 				navItems.map(
 					(navItem:any, index: number) => {
-						return <NavItem navItem={navItem} />
+						return <NavItem key={index.toString()} navItem={navItem} />
 					}
 				)
 			}

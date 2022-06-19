@@ -15,7 +15,7 @@ const Timeline: React.FC<TimelineProps> = ({timelineItems}) => {
 				timelineItems.map(
 					(timelineItem:any, index: number) => {
 						return (
-							<VerticalTimelineElement className="vertical-timeline-element--work">
+							<VerticalTimelineElement key={index.toString()} className="vertical-timeline-element--work">
 								<TimelineHeader>{timelineItem.header}</TimelineHeader>
 								<TimelineSubHeader>{timelineItem.subheader}</TimelineSubHeader>
 								<TimelineDesc>{timelineItem.description}</TimelineDesc>

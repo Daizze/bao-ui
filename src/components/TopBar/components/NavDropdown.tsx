@@ -14,7 +14,7 @@ const NavDropdown: React.FC<NavDropdownProps> = ({navItem}) => {
 						{
 							navItem.submenu.map(
 								(submenuItem:any, index:any ) => {
-									return <Dropdown.Item href={submenuItem.link}>{submenuItem.title}</Dropdown.Item>;
+									return <Dropdown.Item key={index.toString()} href={submenuItem.link}>{submenuItem.title}</Dropdown.Item>;
 								}
 							)
 						}

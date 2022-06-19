@@ -6,6 +6,7 @@ import { Container } from 'react-bootstrap'
 import styled from 'styled-components'
 import { Button } from '../Button'
 import Nav from './components/Nav'
+import LocalisationSelect from "../LocalisationSelect";
 
 interface TopBarProps {
 	isDarkMode: boolean
@@ -38,6 +39,7 @@ const TopBar: React.FC<TopBarProps> = ({
 					<StyledMenuButton onClick={onPresentMobileMenu}>
 						<MenuIcon />
 					</StyledMenuButton>
+					<LocalisationSelect />
 				</StyledAccountButtonWrapper>
 			</StyledTopBarInner>
 		</StyledTopBar>
