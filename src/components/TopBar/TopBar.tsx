@@ -5,19 +5,21 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import styled from 'styled-components'
 import { Button } from '../Button'
-import AccountButton from './components/AccountButton'
 import Nav from './components/Nav'
+import LocalisationSelect from "../LocalisationSelect";
 
 interface TopBarProps {
 	isDarkMode: boolean
 	toggleTheme: () => void
-	onPresentMobileMenu: () => void
+	onPresentMobileMenu: () => void,
+	navItems: any
 }
 
 const TopBar: React.FC<TopBarProps> = ({
 	onPresentMobileMenu,
 	isDarkMode,
 	toggleTheme,
+	navItems
 }) => {
 	return (
 		<StyledTopBar>
@@ -26,10 +28,9 @@ const TopBar: React.FC<TopBarProps> = ({
 					<Logo />
 				</StyledLogoWrapper>
 				<StyledNavWrapper>
-					<Nav />
+					<Nav navItems={navItems} />
 				</StyledNavWrapper>
 				<StyledAccountButtonWrapper>
-					<AccountButton />
 					<StyledThemeButton>
 						<Button onClick={toggleTheme}>
 							<FontAwesomeIcon icon={isDarkMode ? 'moon' : 'sun'} />
@@ -38,6 +39,7 @@ const TopBar: React.FC<TopBarProps> = ({
 					<StyledMenuButton onClick={onPresentMobileMenu}>
 						<MenuIcon />
 					</StyledMenuButton>
+					<LocalisationSelect />
 				</StyledAccountButtonWrapper>
 			</StyledTopBarInner>
 		</StyledTopBar>

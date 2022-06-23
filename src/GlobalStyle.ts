@@ -300,6 +300,34 @@ svg.menuIcon {
 .table {
   margin-bottom: 0px;
 }
+  
+  .selectLanguageButton {
+          background-color: ${(props) => props.theme.color.primary[200]};
+          color: ${(props) => props.theme.color.text[100]};
+          font-weight: ${(props) => props.theme.fontWeight.medium};
+          height: 40px;
+          margin-top: 5px;
+          margin-left: 5px;
+          border-radius: 8px;
+  }
+  
+  .selectLanguage button,
+  .selectLanguage ul {
+          background-color: ${(props) => props.theme.color.primary[200]};
+          color: ${(props) => props.theme.color.text[100]};
+          font-weight: ${(props) => props.theme.fontWeight.medium};
+          border: ${(props) => props.theme.border.default};
+          width: 175px;
+  }
+
+  .selectLanguage ul {
+          margin-left: 5px;
+          border-radius: 8px;
+  }
+
+
+
+
 `
 
 export default GlobalStyle

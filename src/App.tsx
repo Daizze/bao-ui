@@ -1,25 +1,13 @@
 import fetcher from 'bao/lib/fetcher'
-import Web3ReactManager from 'components/Web3ReactManager'
 import GlobalStyle from 'GlobalStyle'
 import React, { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
-import Market from 'views/Markets/Market'
 import MobileMenu from './components/MobileMenu'
 import TopBar from './components/TopBar'
-import BaoProvider from './contexts/BaoProvider'
-import FarmsProvider from './contexts/Farms'
-import MarketsProvider from './contexts/Markets'
 import ModalsProvider from './contexts/Modals'
-import TransactionProvider from './contexts/Transactions'
 import theme from './theme'
-import Ballast from './views/Ballast'
-import Farms from './views/Farms'
-import Markets from './views/Markets'
-import NFT from './views/NFT'
-import Baskets from 'views/Baskets'
-import Basket from 'views/Baskets/Basket'
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -27,6 +15,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+
+import Landing from './views/Landing'
+import {navItems} from 'views/navItems'
+import {Container} from "react-bootstrap";
 
 library.add(fas, fab)
 
@@ -62,29 +54,12 @@ const App: React.FC = () => {
 					isDarkMode={isDarkMode}
 					toggleTheme={toggleTheme}
 					onPresentMobileMenu={handlePresentMobileMenu}
+					navItems={navItems}
 				/>
 				<MobileMenu onDismiss={handleDismissMobileMenu} visible={mobileMenu} />
 				<Switch>
 					<Route path="/" exact>
-						<Markets />
-					</Route>
-					<Route path="/markets/:marketId">
-						<Market />
-					</Route>
-					<Route path="/ballast">
-						<Ballast />
-					</Route>
-					<Route path="/farms">
-						<Farms />
-					</Route>
-					<Route path="/NFT">
-						<NFT />
-					</Route>
-					<Route path="/baskets" exact>
-						<Baskets />
-					</Route>
-					<Route path="/baskets/:id">
-						<Basket />
+						<Landing />
 					</Route>
 				</Switch>
 			</Router>
@@ -99,24 +74,14 @@ const Providers: React.FC<ProvidersProps> = ({
 	return (
 		<ThemeProvider theme={theme(isDarkMode)}>
 			<GlobalStyle />
-			<Web3ReactManager>
-				<BaoProvider>
-					<MarketsProvider>
-						<FarmsProvider>
-							<TransactionProvider>
-								<SWRConfig
-									value={{
-										fetcher,
-										refreshInterval: 300000,
-									}}
-								>
-									<ModalsProvider>{children}</ModalsProvider>
-								</SWRConfig>
-							</TransactionProvider>
-						</FarmsProvider>
-					</MarketsProvider>
-				</BaoProvider>
-			</Web3ReactManager>
+				<SWRConfig
+					value={{
+						fetcher,
+						refreshInterval: 300000,
+					}}
+				>
+					<ModalsProvider>{children}</ModalsProvider>
+				</SWRConfig>
 		</ThemeProvider>
 	)
 }

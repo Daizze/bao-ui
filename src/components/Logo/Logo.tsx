@@ -10,7 +10,7 @@ const Logo: React.FC = () => {
 			<img src={baoLogo} height="32" style={{ verticalAlign: 'middle' }} />
 			<StyledText>
 				<TitleText>
-					Bao Finance
+					PandaChef
 				</TitleText>
 			</StyledText>
 		</StyledLogo>

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import Web3 from 'web3'
 import { provider } from 'web3-core'
 import App from './App'
+import './i18n/config';
 
 function getLibrary(provider: provider) {
 	return new Web3(provider)
