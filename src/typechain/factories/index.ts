@@ -48,3 +48,5 @@ export { Uni_v2_lp__factory } from "./Uni_v2_lp__factory";
 export { Unioracle__factory } from "./Unioracle__factory";
 export { VotingEscrow__factory } from "./VotingEscrow__factory";
 export { Weth__factory } from "./Weth__factory";
+export { SimpleUniRecipe__factory as BalancerRecipe__factory } from "./SimpleUniRecipe__factory";
+

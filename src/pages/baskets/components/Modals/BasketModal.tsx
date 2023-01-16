@@ -22,6 +22,7 @@ import { formatUnits, parseUnits } from 'ethers/lib/utils'
 import Image from 'next/future/image'
 import Link from 'next/link'
 import React, { useMemo, useState } from 'react'
+import RecipeRadioComponent from '@/pages/baskets/components/Modals/RecipeRadioComponent'
 
 type ModalProps = {
 	basket: ActiveSupportedBasket
@@ -41,15 +42,16 @@ const BasketModal: React.FC<ModalProps> = ({ basket, operation, show, hideModal 
 	const [value, setValue] = useState<string | undefined>('0')
 	const [secondaryValue, setSecondaryValue] = useState<string | undefined>('0')
 	const [mintOption, setMintOption] = useState<MintOption>(MintOption.DAI)
+	const [recipeName, setRecipeName] = useState<string>('SimpleUniRecipe')
 
 	const { handleTx, pendingTx } = useTransactionHandler()
 	const rates = useBasketRates(basket)
 
-	const recipe = useContract<SimpleUniRecipe>('SimpleUniRecipe')
+	const recipe = useContract(recipeName)
 	const dai = useContract<Dai>('Dai')
 
 	// Get DAI approval
-	const daiAllowance = useAllowance(Config.addressMap.DAI, Config.contracts.SimpleUniRecipe[chainId].address)
+	const daiAllowance = useAllowance(Config.addressMap.DAI, Config.contracts[recipeName][chainId].address)
 
 	// Get Basket & DAI balances
 	const basketBalance = useTokenBalance(basket.address)
@@ -177,6 +179,7 @@ const BasketModal: React.FC<ModalProps> = ({ basket, operation, show, hideModal 
 									</Typography>
 								</div>
 							</div>
+							<RecipeRadioComponent onChange={(recipeName: string) => setRecipeName(recipeName)} selected={recipeName} />
 							<Input
 								value={value}
 								onChange={e => setValue(e.currentTarget.value)}

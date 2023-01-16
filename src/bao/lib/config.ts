@@ -97,6 +97,11 @@ export default {
 				address: '0xac0fE9F363c160c281c81DdC49d0AA8cE04C02Eb',
 			},
 		},
+		BalancerRecipe: {
+			1: {
+				address: '0xac0fE9F363c160c281c81DdC49d0AA8cE04C02Eb',
+			},
+		},
 		LendingRegistry: {
 			1: {
 				address: '0x08a2b7D713e388123dc6678168656659d297d397',
